@@ -1,0 +1,44 @@
+[gd_scene load_steps=4 format=3 uid="uid://df52crnimfhai"]
+
+[ext_resource type="Script" path="res://Scripts/parallax_background.gd" id="1_5kt5d"]
+[ext_resource type="Texture2D" uid="uid://gxtt8hcjfu87" path="res://[Imported Assets]/Environment/Layers/back.png" id="1_dg7fm"]
+[ext_resource type="Texture2D" uid="uid://iod8g25vad4k" path="res://[Imported Assets]/Environment/Layers/far.png" id="2_ocnbi"]
+
+[node name="ParallaxBackground" type="ParallaxBackground"]
+script = ExtResource("1_5kt5d")
+
+[node name="ParallaxLayer - Background" type="ParallaxLayer" parent="."]
+motion_scale = Vector2(0.6, 0.6)
+
+[node name="Back" type="Sprite2D" parent="ParallaxLayer - Background"]
+position = Vector2(418, 329)
+scale = Vector2(3.17083, 3.17083)
+texture = ExtResource("1_dg7fm")
+
+[node name="Back2" type="Sprite2D" parent="ParallaxLayer - Background"]
+position = Vector2(1381, 329)
+scale = Vector2(3.17083, 3.17083)
+texture = ExtResource("1_dg7fm")
+
+[node name="Back3" type="Sprite2D" parent="ParallaxLayer - Background"]
+position = Vector2(2340, 329)
+scale = Vector2(3.17083, 3.17083)
+texture = ExtResource("1_dg7fm")
+
+[node name="ParallaxLayer - Far" type="ParallaxLayer" parent="."]
+motion_scale = Vector2(0.8, 1)
+
+[node name="Far" type="Sprite2D" parent="ParallaxLayer - Far"]
+position = Vector2(420, 364)
+scale = Vector2(2.54792, 2.54792)
+texture = ExtResource("2_ocnbi")
+
+[node name="Far2" type="Sprite2D" parent="ParallaxLayer - Far"]
+position = Vector2(1300, 366)
+scale = Vector2(2.54792, 2.54792)
+texture = ExtResource("2_ocnbi")
+
+[node name="Far3" type="Sprite2D" parent="ParallaxLayer - Far"]
+position = Vector2(2162, 362)
+scale = Vector2(2.54792, 2.54792)
+texture = ExtResource("2_ocnbi")

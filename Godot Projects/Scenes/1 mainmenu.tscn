@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=3 uid="uid://b658p1l17pvju"]
+
+[ext_resource type="Script" path="res://Scripts/MainMenu.gd" id="1_ry1e8"]
+[ext_resource type="PackedScene" uid="uid://df52crnimfhai" path="res://Scenes/Background/parallax_background.tscn" id="2_6ktkf"]
+
+[sub_resource type="SystemFont" id="SystemFont_up34q"]
+font_weight = 100
+
+[node name="MainMenu" type="Node2D"]
+script = ExtResource("1_ry1e8")
+
+[node name="Play" type="Button" parent="."]
+offset_left = 513.0
+offset_top = 452.0
+offset_right = 673.0
+offset_bottom = 505.0
+tooltip_text = "Play the Game"
+theme_override_fonts/font = SubResource("SystemFont_up34q")
+theme_override_font_sizes/font_size = 25
+text = "Play"
+
+[node name="Quit" type="Button" parent="."]
+offset_left = 513.0
+offset_top = 528.0
+offset_right = 673.0
+offset_bottom = 581.0
+tooltip_text = "Quit the Game"
+theme_override_fonts/font = SubResource("SystemFont_up34q")
+theme_override_font_sizes/font_size = 25
+text = "Quit"
+
+[node name="ParallaxBackground" parent="." instance=ExtResource("2_6ktkf")]
+
+[connection signal="pressed" from="Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]
