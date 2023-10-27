@@ -1,35 +1,75 @@
-[gd_scene load_steps=4 format=3 uid="uid://b658p1l17pvju"]
+[gd_scene load_steps=6 format=3 uid="uid://b658p1l17pvju"]
 
 [ext_resource type="Script" path="res://Scripts/MainMenu.gd" id="1_ry1e8"]
 [ext_resource type="PackedScene" uid="uid://df52crnimfhai" path="res://Scenes/Background/parallax_background.tscn" id="2_6ktkf"]
 
-[sub_resource type="SystemFont" id="SystemFont_up34q"]
-font_weight = 100
+[sub_resource type="Theme" id="Theme_pmedg"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yvrgr"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_boeqv"]
+bg_color = Color(0, 0, 0, 1)
 
 [node name="MainMenu" type="Node2D"]
 script = ExtResource("1_ry1e8")
 
-[node name="Play" type="Button" parent="."]
-offset_left = 513.0
-offset_top = 452.0
-offset_right = 673.0
-offset_bottom = 505.0
-tooltip_text = "Play the Game"
-theme_override_fonts/font = SubResource("SystemFont_up34q")
+[node name="ParallaxBackground" parent="." instance=ExtResource("2_6ktkf")]
+
+[node name="ParallaxBackground2" parent="." instance=ExtResource("2_6ktkf")]
+offset = Vector2(0, 750)
+transform = Transform2D(1, 0, 0, 1, 0, 750)
+
+[node name="MAIN MENU UI" type="CanvasLayer" parent="."]
+
+[node name="Play" type="Button" parent="MAIN MENU UI"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -84.0
+offset_top = -185.0
+offset_right = 78.0
+offset_bottom = -133.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = SubResource("Theme_pmedg")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 25
+theme_override_styles/normal = SubResource("StyleBoxFlat_yvrgr")
+theme_override_styles/hover = SubResource("StyleBoxFlat_boeqv")
 text = "Play"
 
-[node name="Quit" type="Button" parent="."]
-offset_left = 513.0
-offset_top = 528.0
-offset_right = 673.0
-offset_bottom = 581.0
-tooltip_text = "Quit the Game"
-theme_override_fonts/font = SubResource("SystemFont_up34q")
+[node name="Quit" type="Button" parent="MAIN MENU UI"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -83.0
+offset_top = -98.0
+offset_right = 79.0
+offset_bottom = -46.0
+grow_horizontal = 2
+grow_vertical = 0
 theme_override_font_sizes/font_size = 25
 text = "Quit"
 
-[node name="ParallaxBackground" parent="." instance=ExtResource("2_6ktkf")]
+[node name="GODOT PLANET" type="Label" parent="MAIN MENU UI"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -576.0
+offset_right = 576.0
+offset_bottom = 206.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 66
+text = "GODOT PLANET"
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[connection signal="pressed" from="Play" to="." method="_on_play_pressed"]
-[connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="MAIN MENU UI/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="MAIN MENU UI/Quit" to="." method="_on_quit_pressed"]

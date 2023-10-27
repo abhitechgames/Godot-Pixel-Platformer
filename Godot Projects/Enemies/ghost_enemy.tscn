@@ -1,0 +1,87 @@
+[gd_scene load_steps=15 format=3 uid="uid://c105okui4nkfa"]
+
+[ext_resource type="Script" path="res://Enemies/Scripts/ghost_enemy.gd" id="1_2u2kk"]
+[ext_resource type="Texture2D" uid="uid://nieifke0jtep" path="res://[Imported Assets]/Characters/Enemies/sprites/Ghost/ghost1.png" id="1_deqqd"]
+[ext_resource type="Texture2D" uid="uid://b20mcu5focmm2" path="res://[Imported Assets]/Characters/Enemies/sprites/Ghost/ghost2.png" id="2_6tj37"]
+[ext_resource type="Texture2D" uid="uid://b2yg8jajma24n" path="res://[Imported Assets]/Fx/Sprites/Explosion/explosion1.png" id="2_6uv73"]
+[ext_resource type="Texture2D" uid="uid://bf22flw4rj35i" path="res://[Imported Assets]/Characters/Enemies/sprites/Ghost/ghost3.png" id="3_74uiu"]
+[ext_resource type="Texture2D" uid="uid://crq0157qcth0a" path="res://[Imported Assets]/Fx/Sprites/Explosion/explosion2.png" id="3_ygdfh"]
+[ext_resource type="Texture2D" uid="uid://gvxvso8u8a86" path="res://[Imported Assets]/Fx/Sprites/Explosion/explosion3.png" id="4_66x0e"]
+[ext_resource type="Texture2D" uid="uid://dawrtogw7v7qh" path="res://[Imported Assets]/Characters/Enemies/sprites/Ghost/ghost4.png" id="4_v1fx0"]
+[ext_resource type="Texture2D" uid="uid://cj1khdq0sol04" path="res://[Imported Assets]/Fx/Sprites/Explosion/explosion4.png" id="5_js0h7"]
+[ext_resource type="Texture2D" uid="uid://1vcsmtfar4n4" path="res://[Imported Assets]/Environment/Layers/props/plant.png" id="6_1heup"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xx2j1"]
+radius = 9.0
+height = 20.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jnga7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_6uv73")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_ygdfh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_66x0e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_js0h7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_1heup")
+}],
+"loop": false,
+"name": &"Death",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_deqqd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_6tj37")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_74uiu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_v1fx0")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rfsjb"]
+size = Vector2(21, 10)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q3d6r"]
+size = Vector2(11, 20)
+
+[node name="Ghost Enemy" type="CharacterBody2D"]
+script = ExtResource("1_2u2kk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_xx2j1")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_jnga7")
+animation = &"Idle"
+
+[node name="Enemy Damage Player Collider" type="Area2D" parent="."]
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Enemy Damage Player Collider"]
+position = Vector2(0.5, 5)
+shape = SubResource("RectangleShape2D_rfsjb")
+
+[node name="Enemy Death Collider" type="Area2D" parent="."]
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Enemy Death Collider"]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_q3d6r")
+
+[connection signal="body_entered" from="Enemy Damage Player Collider" to="." method="_on_enemy_damage_player_collider_body_entered"]
+[connection signal="body_entered" from="Enemy Death Collider" to="." method="_on_enemy_death_collider_body_entered"]

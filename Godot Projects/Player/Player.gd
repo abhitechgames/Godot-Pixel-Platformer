@@ -1,5 +1,6 @@
 extends CharacterBody2D
 
+var health:int = 100
 
 const SPEED = 300.0
 const JUMP_VELOCITY = -500.0
@@ -8,7 +9,10 @@ const JUMP_VELOCITY = -500.0
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 @onready var animation_controller = get_node("AnimationPlayer")
+
 @onready var animated_sprite = get_node("AnimatedSprite2D")
+
+@onready var health_bar = get_node("../UI/PLAYER HEALTH BAR")
 
 func _physics_process(delta):
 	# Add the gravity.
@@ -41,3 +45,13 @@ func _physics_process(delta):
 			animation_controller.play("Idle")
 
 	move_and_slide()
+	
+func damage_player(damage:int = 30):
+	health = health - damage
+	health_bar.value = health
+	print(health)
+	#update health bar
+	
+	if health <= 0:
+		get_node("../UI/FAILED SCREEN").visible = true
+		self.queue_free()
