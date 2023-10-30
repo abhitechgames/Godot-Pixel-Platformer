@@ -64,10 +64,11 @@ anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -576.0
 offset_right = 576.0
-offset_bottom = 206.0
+offset_bottom = 354.0
 grow_horizontal = 2
-theme_override_font_sizes/font_size = 66
-text = "GODOT PLANET"
+theme_override_font_sizes/font_size = 75
+text = "GODOT
+PLANET"
 horizontal_alignment = 1
 vertical_alignment = 1
 
